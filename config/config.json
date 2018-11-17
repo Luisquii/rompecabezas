@@ -1,0 +1,22 @@
+{
+    "images" : {
+        "img_01" : {
+            "name" : "Beavis & Butthead",
+            "url" : "./images/beavis_butthead.jpg",
+            "pieces" : 25,
+            "time" : 300
+        },
+        "img_02" : {
+            "name" : "Black Sabbath",
+            "url" : "./images/black_sabbath.jpg",
+            "pieces" : 15,
+            "time" : 300
+        },
+        "img_03" : {
+            "name" : "Iron Maiden",
+            "url" : "./images/iron_maiden.jpg",
+            "pieces" : 40,
+            "time" : 300
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+
+	    <!-- Estilos de la aplicación -->
+        <link rel="stylesheet" href="./css/app.css" />
+
+        <!-- Script que tiene las funciones para hacer peticiones al servidor -->
+        <script type="text/javascript" src="./js/utils.js"></script>
+        <!-- Script que contiene la lógica de esta página -->
+		<script type="text/javascript" src="./js/puzzle.js"></script>
+	</head>
+
+    <!-- La lógica de la aplicación se dispara cuando el body acaba de cargarse -->
+	<body onload="documentLoaded();">
+
+        <!-- Div que contendrá el tablero de juego -->
+    	<div id="puzzle"></div>
+
+		<canvas id="myCanvas" width="500" height="500"></canvas>
+
+	</body>
+
+</html>

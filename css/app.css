@@ -1,0 +1,27 @@
+body{
+    overflow: scroll;
+}
+
+#puzzle{
+    width: 100%;
+}
+
+#puzzle .pieceContainer{
+	margin: 0;
+    display: inline-block;
+    cursor: pointer;
+    border: 3px solid white;
+}
+
+#puzzle .piece.matched{
+	border: 3px groove red;
+}
+
+.clearer{
+    clear:both;
+    display: block;
+}
+
+#puzzle .piece canvas{
+    display: block;
+}
