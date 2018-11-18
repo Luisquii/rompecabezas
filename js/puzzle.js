@@ -10,7 +10,7 @@ var mixedPieces = [];
 var piecesNumber = 12;
 var firstPiece = null;
 var secondPiece = null;
-
+var temp = null;
 
 /*
  Función que obtiene los dos divisores más grandes del número de piezas para distribuirlas en
@@ -63,22 +63,32 @@ function getPieceSize(){
 
 }
 
+
 function pieceSelected(event){
     console.info("click", event.target.id);
     console.info("parent", event.target.parentElement.id);
 
     if(firstPiece === null){
-        firstPiece = event.target.id;
+        firstPiece = document.getElementById(event.target.id);
     }
     else{
-        //Intercambiar
-
-        //Validar posicion
-
-        //Setear a null
+        console.info("cosa");
+        secondPiece = document.getElementById(event.target.id);
+        moverElemento(firstPiece, secondPiece);
+        }
         firstPiece = null;
+        secondPiece = null;
     }
 
+function moverElemento(image1, image2){
+      console.info("que peds");
+      var temp = image1;
+      var temp2 = image2;
+      mixedPieces[temp.id.split[1]][temp.Id.split[2]] = temp2;
+      mixedPieces[temp2.id.split[1]][temp2.Id.split[2]] = temp;
+      console.info("hola");
+      console.info("viejo", temp.id);
+      console.info("nuevo", temp2.id);
 }
 
 
@@ -231,6 +241,7 @@ function loadPuzzle(data){
         generatePieces();
         mixPieces();
         buildBoard();
+        timerDown(1.1);
     };
 
     console.info("test");
@@ -260,5 +271,39 @@ function documentLoaded(){
 
     //TODO: Ejecutar el request y mandar llamar como callback la función loadPuzzle
     loadPuzzle();
+}
+
+function timerDown(minut){
+  // Poner el momento al que estamos contando
+var countDownDate = new Date().getTime();
+countDownDate = countDownDate + (60000 * minut)
+
+// Actualizar el conteo cada segundo
+var x = setInterval(function() {
+
+    // Obtener el tiempo en este momento
+    var now = new Date().getTime();
+
+    // Cuanto falta
+    var distance = countDownDate - now;
+
+    // La funcion gettime nos da el dato en milisegundos, entonces debemos transformarlos
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Debemos seleccionar que imprimir
+    if (minutes < 1){
+    document.getElementById("demo").innerHTML = "";
+    document.getElementById("alerta").innerHTML = seconds + "s ";}
+    else {
+      document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+    }
+
+    // Si el tiempo se acaba te dice que se acabo todo, ya perdiste, tlp
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("alerta").innerHTML = "TIME'S UP";
+    }
+}, 1000);
 
 }
