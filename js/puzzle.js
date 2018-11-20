@@ -7,10 +7,22 @@ var pieces = [];
 //guarda las piezas generadas mezcladas
 var mixedPieces = [];
 //Número de piezas
-var piecesNumber = 12;
+var piecesNumber = null;
 var firstPiece = null;
 var secondPiece = null;
 var temp = null;
+var tiempo = null;
+var piezas = null;
+/*
+get the value from the get
+*/
+fetch('./config/config.json')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
 
 /*
  Función que obtiene los dos divisores más grandes del número de piezas para distribuirlas en
@@ -67,29 +79,30 @@ function getPieceSize(){
 function pieceSelected(event){
     console.info("click", event.target.id);
     console.info("parent", event.target.parentElement.id);
-
     if(firstPiece === null){
-        firstPiece = document.getElementById(event.target.id);
+        firstPiece = event.target;
     }
     else{
-        console.info("cosa");
-        secondPiece = document.getElementById(event.target.id);
-        moverElemento(firstPiece, secondPiece);
+        secondPiece = event.target;
+        var container2 = secondPiece.parentElement;
+        var container1 = firstPiece.parentElement;
+        if(((container2.id.split("_")[1] == secondPiece.id.split("_")[1]) && (container2.id.split("_")[2] == secondPiece.id.split("_")[2])) || ((container1.id.split("_")[1] == firstPiece.id.split("_")[1]) && (container1.id.split("_")[2] == firstPiece.id.split("_")[2])))
+        window.alert("Movimiento No Valido: Alguna de las piezas ya se encuentra bien posicionada");
+        else{
+        container2.replaceChild(firstPiece, secondPiece);
+        container1.appendChild(secondPiece);
+        checkwinner();
         }
         firstPiece = null;
         secondPiece = null;
+        }
     }
 
-function moverElemento(image1, image2){
-      console.info("que peds");
-      var temp = image1;
-      var temp2 = image2;
-      mixedPieces[temp.id.split[1]][temp.Id.split[2]] = temp2;
-      mixedPieces[temp2.id.split[1]][temp2.Id.split[2]] = temp;
-      console.info("hola");
-      console.info("viejo", temp.id);
-      console.info("nuevo", temp2.id);
-}
+function checkwinner(){
+  }
+
+
+
 
 
 /*
@@ -226,7 +239,7 @@ ejecuta la lógica para generar el juego de acuerdo a su configuración
 */
 function loadPuzzle(data){
     //Data contiene las configuraciones existentes leídas del archivo
-
+    console.info(data);
     //Id de la imagen enviado por parámetro
     var imageId = getParameter("id");
 
@@ -235,16 +248,68 @@ function loadPuzzle(data){
     //TODO: leer la configuración de la imagen y generar todo dinámicamente
 
     //Por ahora se usa una imagen y configuración estática
-    imageObj.src = './img/beavis_butthead.jpg';
+
+
+    //condicional que refiere a las imagenes
+    switch(imageId) {
+    case '1':
+        imageObj.src = data.images.img_01.url;
+        tiempo = data.images.img_01.time;
+        piecesNumber = data.images.img_01.pieces;
+        //imageObj.src = './img/beavis_butthead.jpg';
+        break;
+    case '2':
+        imageObj.src = data.images.img_02.url;
+        tiempo = data.images.img_02.time;
+        piecesNumber = data.images.img_02.pieces;
+        break;
+    case '3':
+        imageObj.src =  data.images.img_03.url;
+        tiempo = data.images.img_03.time;
+        piecesNumber = data.images.img_03.pieces;
+        break;
+    case '4':
+        imageObj.src =  data.images.img_04.url;
+        tiempo = data.images.img_04.time;
+        piecesNumber = data.images.img_04.pieces;
+        break;
+    case '5':
+        imageObj.src =  data.images.img_05.url;
+        tiempo = data.images.img_05.time;
+        piecesNumber = data.images.img_05.pieces;
+        break;
+    case '6':
+        imageObj.src =  data.images.img_06.url;
+        tiempo = data.images.img_06.time;
+        piecesNumber = data.images.img_06.pieces;
+        break;
+    case '7':
+        imageObj.src =  data.images.img_07.url;
+        tiempo = data.images.img_07.time;
+        piecesNumber = data.images.img_07.pieces;
+        break;
+    case '8':
+        imageObj.src =  data.images.img_08.url;
+        tiempo = data.images.img_08.time;
+        piecesNumber = data.images.img_08.pieces;
+        break;
+    case '9':
+        imageObj.src =  data.images.img_09.url;
+        tiempo = data.images.img_09.time;
+        piecesNumber = data.images.img_09.pieces;
+          break;
+    default:
+
+    }
+
 
     imageObj.onload = function(){
         generatePieces();
         mixPieces();
         buildBoard();
-        timerDown(1.1);
+        timerDown();
     };
 
-    console.info("test");
 
     /*
     Una vez cargada la imagen (imageObj.onload), se manda llamar un callback con la lógica para:
@@ -260,7 +325,8 @@ function loadPuzzle(data){
 function documentLoaded(){
 
 	puzzleContainer = document.getElementById("puzzle");
-
+  doGet('./config/config.json', loadPuzzle, null, "json");
+  doGet('./config/config.json', timerDown, null, "json")
     /*
      En esta parte se tiene que cargar el archivo de configuración
      La imagen se tendrá que cargar de acuerdo al parámetro pasado por GET en la URL
@@ -270,13 +336,14 @@ function documentLoaded(){
     */
 
     //TODO: Ejecutar el request y mandar llamar como callback la función loadPuzzle
-    loadPuzzle();
+    //loadPuzzle();
 }
 
-function timerDown(minut){
+function timerDown(){
   // Poner el momento al que estamos contando
+  // var minut = $_GET
 var countDownDate = new Date().getTime();
-countDownDate = countDownDate + (60000 * minut)
+countDownDate = countDownDate + (1000 * tiempo);
 
 // Actualizar el conteo cada segundo
 var x = setInterval(function() {

@@ -10,11 +10,11 @@ body{
 	margin: 0;
     display: inline-block;
     cursor: pointer;
-    border: 3px solid white;
+    border: 1px solid white;
 }
 
 #puzzle .piece.matched{
-	border: 3px groove red;
+	border: 1px groove red;
 }
 
 .clearer{

@@ -2,21 +2,57 @@
     "images" : {
         "img_01" : {
             "name" : "Beavis & Butthead",
-            "url" : "./images/beavis_butthead.jpg",
-            "pieces" : 25,
-            "time" : 300
+            "url" : "./img/beavis_butthead.jpg",
+            "pieces" : 20,
+            "time" : 200
         },
         "img_02" : {
-            "name" : "Black Sabbath",
-            "url" : "./images/black_sabbath.jpg",
-            "pieces" : 15,
-            "time" : 300
+            "name" : "Iron Maiden",
+            "url" : "./img/iron_maiden.jpg",
+            "pieces" : 20,
+            "time" : 200
         },
         "img_03" : {
-            "name" : "Iron Maiden",
-            "url" : "./images/iron_maiden.jpg",
-            "pieces" : 40,
-            "time" : 300
+            "name" : "Black Sabbath",
+            "url" : "./img/black_sabbath.jpg",
+            "pieces" : 20,
+            "time" : 200
+        },
+        "img_04" : {
+            "name" : "Los Simpsons",
+            "url" : "./img/simpsons.jpg",
+            "pieces" : 30,
+            "time" : 180
+        },
+        "img_05" : {
+            "name" : "Dragon Ball Super",
+            "url" : "./img/dbs.jpg",
+            "pieces" : 30,
+            "time" : 180
+        },
+        "img_06" : {
+            "name" : "Pitufos",
+            "url" : "./img/pitufos.jpg",
+            "pieces" : 30,
+            "time" : 180
+        },
+        "img_07" : {
+            "name" :"Pikachu",
+            "url" : "./img/pikachu.jpg",
+            "pieces" : 36,
+            "time" : 150
+        },
+        "img_08" : {
+            "name" :"Rainbow",
+            "url" : "./img/rainbow.jpg",
+            "pieces" : 36,
+            "time" : 150
+        },
+        "img_09" : {
+            "name" :"TimmyJimmy",
+            "url" : "./img/timmy.jpg",
+            "pieces" : 36,
+            "time" : 150
         }
     }
 }
