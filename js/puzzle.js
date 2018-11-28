@@ -13,6 +13,8 @@ var secondPiece = null;
 var temp = null;
 var tiempo = null;
 var piezas = null;
+var ganador = new Audio('./victory.mp3');
+var perdido = new Audio('./lose.mp3');
 /*
 get the value from the get
 */
@@ -91,7 +93,6 @@ function pieceSelected(event){
         else{
         container2.replaceChild(firstPiece, secondPiece);
         container1.appendChild(secondPiece);
-        checkwinner();
         }
         firstPiece = null;
         secondPiece = null;
@@ -99,6 +100,24 @@ function pieceSelected(event){
     }
 
 function checkwinner(){
+  var acum = 0;
+  var goal = mixedPieces.length * mixedPieces[0].length;
+     for(var i=0; i< mixedPieces.length;i++){
+       for(var j=0; j< mixedPieces[i].length;j++){
+         var lbl = "p_"+i+"_"+j;
+         var foto = document.getElementById(lbl);
+         var container3 = foto.parentElement;
+         if(((container3.id.split("_")[1] == foto.id.split("_")[1]) && (container3.id.split("_")[2] == foto.id.split("_")[2])))
+             {
+             acum = acum + 1;
+             }
+     }
+     }
+    if (acum == goal)
+      return true;
+    else {
+      return false;
+    }
   }
 
 
@@ -367,10 +386,24 @@ var x = setInterval(function() {
     }
 
     // Si el tiempo se acaba te dice que se acabo todo, ya perdiste, tlp
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("alerta").innerHTML = "TIME'S UP";
+    if (distance < 0 ) {
+      clearInterval(x);
+      document.getElementById("alerta").innerHTML = "TIME'S UP";
+      perdido.play();
+      window.alert("PERDISTE!!! LOOSER!");
+      window.location.replace("./index.html");
     }
+
+    if(checkwinner() && distance > 0)
+    {
+      ganador.play();
+      window.alert("Felicidades!!! Has Ganado!");
+      //ganador.pause();
+      window.location.replace("./index.html");
+    }
+
+
+
 }, 1000);
 
 }
